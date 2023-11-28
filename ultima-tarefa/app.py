@@ -21,14 +21,14 @@ memoria_usada = Gauge(
     ['server_name', 'location']
 )
 
-# Metrics specific to locations
+# metrica do anyeon
 location_requests = Counter(
     'location_requests',
     'Number of requests for each location.',
     ['status_code']
 )
 
-
+#pagina principal com algumas metricas
 @app.route('/start')
 def start():
     valor = random_number()
@@ -37,6 +37,7 @@ def start():
 
     return "principal"
 
+#pagina anyeon com algumas metricas
 @app.route('/anyeon')
 def anyeon():
     location_requests.labels(random_number()).inc()
