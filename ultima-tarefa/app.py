@@ -28,11 +28,6 @@ location_requests = Counter(
     ['status_code']
 )
 
-# location_response_time = Gauge(
-#     'location_response_time',
-#     'Response time for each location.',
-#     ['location']
-# )
 
 @app.route('/start')
 def start():
@@ -40,7 +35,7 @@ def start():
     numero_requests.labels(valor).inc()
     memoria_usada.labels('server-a', 'principal').set(random.randint(10000, 90000))
 
-    return "princiapl"
+    return "principal"
 
 @app.route('/anyeon')
 def anyeon():
