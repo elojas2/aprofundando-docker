@@ -15,8 +15,8 @@ numero_requests = Counter(
     ['status_code']
 )
 
-memoria_usada = Gauge(
-    'memoria_usada',
+requests = Gauge(
+    'requests',
     'A memoria que esta sendo usada (aleatoriamente).',
     ['server_name', 'location']
 )
@@ -33,7 +33,7 @@ location_requests = Counter(
 def start():
     valor = random_number()
     numero_requests.labels(valor).inc()
-    memoria_usada.labels('server-a', 'principal').set(random.randint(10000, 90000))
+    requests.labels('server-a', 'principal').set(random.randint(10000, 90000))
 
     return "principal"
 
@@ -41,7 +41,7 @@ def start():
 @app.route('/anyeon')
 def anyeon():
     location_requests.labels(random_number()).inc()
-    memoria_usada.labels('server-a', 'anyeon')
+    requests.labels('server-a', 'anyeon').set(random.randint(10000, 90000))
     return 'anyeon'
 
 
